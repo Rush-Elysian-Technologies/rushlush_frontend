@@ -1,13 +1,22 @@
 import React from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { UserContext } from './Context';
+
+const checkCustomer = localStorage.getItem('customer_login');
+const isCustomerLoggedIn = checkCustomer === 'true';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <UserContext.Provider value={{ login: isCustomerLoggedIn }}>
+        <App />
+      </UserContext.Provider>
+    </Router>
   </React.StrictMode>
 );
 
