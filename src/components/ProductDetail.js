@@ -21,7 +21,7 @@ function ProductDetail() {
         fetchRelatedData(baseUrl+'/related-products/'+product_id);
         checkProductInCart(product_id);
         // localStorage.removeItem('cartData');
-    },[]);
+    }, [product_id]);
 
     // old
     // function checkProductInCart(product_id){
@@ -112,22 +112,8 @@ function ProductDetail() {
         setcartButtonClickStatus(true);
     }
 
-    // old
-    // const cartRemoveButtonHandler = () =>{
-    //     var previousCart=localStorage.getItem('cartData');
-    //     var cartJson=JSON.parse(previousCart);
-    //     cartJson.map((cart,index)=>{
-    //         if(cart!=null && cart.product.id == productData.id){
-    //             // delete cartJson[index];
-    //             cartJson.splice(index, 1);
-    //         }
-    //     });
-    //     var cartString=JSON.stringify(cartJson);
-    //     localStorage.setItem('cartData',cartString);
-    //     setcartButtonClickStatus(false);
-    //     setCartData(cartJson);
-    // }
-
+ 
+ 
     // new
     const cartRemoveButtonHandler = () => {
         if (productData && productData.id) {
@@ -153,11 +139,18 @@ function ProductDetail() {
         }
     };
     
-
-    
-
     
     console.log(localStorage.getItem('cartData'));
+    // useEffect(() => {
+    //     console.log('cartData:', cartData);
+    //     // Additional logic related to cartData
+    //     // ...
+    // }, [cartData]);
+
+    // useEffect(() => {
+    //     console.log(localStorage.getItem('cartData'));
+    // }, []);
+
 
     return (
         <section className="container mt-4">
